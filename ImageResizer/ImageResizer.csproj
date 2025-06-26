@@ -13,4 +13,8 @@
     <Folder Include="Resized_Files\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="9.0.6" />
+  </ItemGroup>
+
 </Project>
