@@ -5,6 +5,8 @@ using System.Drawing;
 
 namespace ImageResizer
 {
+
+
     internal class Program
     {
         private static void Main(string[] args)
@@ -41,28 +43,39 @@ namespace ImageResizer
             FileStream fileStream;
             FileInfo fileInfo;
 
-            int height = 200; 
+            int[] height = new int[3] { 200, 500, 800 }; 
 
             while(true)
             {
                 var inputFiles = Directory.EnumerateFiles(inputDirectory);
 
-                foreach(var file in inputFiles)
-                {
-                    fileStream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
-                    fileInfo = new FileInfo(file);
 
-                    string path = Environment.CurrentDirectory + @"\" + resizedDirectory + @"\" + DateTime.Now.Millisecond.ToString() + fileInfo.Name;
+                    foreach(var file in inputFiles)
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
 
-                    Resize(Image.FromStream(fileStream), height, path);
+                            fileStream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+                            fileInfo = new FileInfo(file);
 
-                    fileStream.Close();
+                            string path = Environment.CurrentDirectory + @"\" + resizedDirectory + @"\" + DateTime.Now.Millisecond.ToString() + $" millisegundos, {height[i]} pixels_" + fileInfo.Name;
 
-                    string finishedPath = Environment.CurrentDirectory + @"\" + finishedDirectory + @"\" + fileInfo.Name;
+                            Resize(Image.FromStream(fileStream), height[i], path);
 
-                    fileInfo.MoveTo(finishedPath);
+                            fileStream.Close();
 
-                }
+                            string finishedPath = Environment.CurrentDirectory + @"\" + finishedDirectory + @"\" + fileInfo.Name;
+
+                            if (i == 2)
+                            {
+                                fileInfo.MoveTo(finishedPath);
+                            }
+
+                        }
+
+
+                    }
+                
 
                 Thread.Sleep(new TimeSpan(0, 0, 3));
             }
