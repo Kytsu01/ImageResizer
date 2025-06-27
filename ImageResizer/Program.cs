@@ -25,6 +25,8 @@ namespace ImageResizer
             string resizedDirectory = "Resized_Files";
             string finishedDirectory = "Finished_Files";
 
+            string[] pixels = new string[3] { "200_Pixels", "500_Pixels", "800_Pixels" };
+
             if(!Directory.Exists(inputDirectory))
             {
                 Directory.CreateDirectory(inputDirectory);
@@ -40,6 +42,17 @@ namespace ImageResizer
                 Directory.CreateDirectory(finishedDirectory);
             }
 
+            for (int i = 0; i < 3; i++)
+            {
+                if(!Directory.Exists(resizedDirectory + @"\" + pixels[i]))
+                {
+                    Directory.CreateDirectory(resizedDirectory + @"\" + pixels[i]);
+                }
+
+            }
+
+
+
             FileStream fileStream;
             FileInfo fileInfo;
 
@@ -50,31 +63,31 @@ namespace ImageResizer
                 var inputFiles = Directory.EnumerateFiles(inputDirectory);
 
 
-                    foreach(var file in inputFiles)
+                foreach(var file in inputFiles)
+                {
+                    for (int i = 0; i < 3; i++)
                     {
-                        for (int i = 0; i < 3; i++)
+
+                        fileStream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+                        fileInfo = new FileInfo(file);
+
+                        string path = Environment.CurrentDirectory + @"\" + resizedDirectory + @"\" + $"{pixels[i]}" + @"\" + DateTime.Now.Millisecond.ToString() + $" millisegundos, {height[i]} pixels_" + fileInfo.Name;
+
+                        Resize(Image.FromStream(fileStream), height[i], path);
+
+                        fileStream.Close();
+
+                        string finishedPath = Environment.CurrentDirectory + @"\" + finishedDirectory + @"\" + fileInfo.Name;
+
+                        if (i == 2)
                         {
-
-                            fileStream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
-                            fileInfo = new FileInfo(file);
-
-                            string path = Environment.CurrentDirectory + @"\" + resizedDirectory + @"\" + DateTime.Now.Millisecond.ToString() + $" millisegundos, {height[i]} pixels_" + fileInfo.Name;
-
-                            Resize(Image.FromStream(fileStream), height[i], path);
-
-                            fileStream.Close();
-
-                            string finishedPath = Environment.CurrentDirectory + @"\" + finishedDirectory + @"\" + fileInfo.Name;
-
-                            if (i == 2)
-                            {
-                                fileInfo.MoveTo(finishedPath);
-                            }
-
+                            fileInfo.MoveTo(finishedPath);
                         }
 
-
                     }
+
+
+                }
                 
 
                 Thread.Sleep(new TimeSpan(0, 0, 3));

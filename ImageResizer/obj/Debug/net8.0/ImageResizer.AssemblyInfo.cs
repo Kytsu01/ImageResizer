@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ImageResizer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a48da305ead5a9152ec079220c77f016fa15f9ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31f2c78ce0b3a182d710606a4d3e4ade0940bc97")]
 [assembly: System.Reflection.AssemblyProductAttribute("ImageResizer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ImageResizer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
