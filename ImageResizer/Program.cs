@@ -9,11 +9,30 @@ namespace ImageResizer
 
     internal class Program
     {
+
+        static string Msg = "Procurando arquivos...";
+        static int ChosenHeight;
+
         private static void Main(string[] args)
         {
-            Console.WriteLine("Iniciando redimensionador!");
+
+            Console.WriteLine("Redimensionador Iniciado! \n");
+
+            Console.WriteLine("Por padrao, o redimensionador ira redimensionar as imagens para uma altura de 200, 500 e 800 pixels!");
+            Console.WriteLine("Digite uma altura em pixels que voce deseja redimensionar seu arquivo: ");
+            ChosenHeight = Convert.ToInt32(Console.ReadLine());
+
             Thread thread = new Thread(ResizeImage);
             thread.Start();
+
+            Thread.Sleep(new TimeSpan(0, 0, 2));
+            while(true)
+            {
+                Console.Clear();
+                Console.WriteLine(Msg);
+                Thread.Sleep(new TimeSpan(0, 0, 2));
+
+            }
 
 
         }    
@@ -25,7 +44,7 @@ namespace ImageResizer
             string resizedDirectory = "Resized_Files";
             string finishedDirectory = "Finished_Files";
 
-            string[] pixels = new string[3] { "200_Pixels", "500_Pixels", "800_Pixels" };
+            string[] pixels = new string[4] { "200_Pixels", "500_Pixels", "800_Pixels", $"{ChosenHeight}_Pixels" };
 
             if(!Directory.Exists(inputDirectory))
             {
@@ -42,7 +61,7 @@ namespace ImageResizer
                 Directory.CreateDirectory(finishedDirectory);
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 if(!Directory.Exists(resizedDirectory + @"\" + pixels[i]))
                 {
@@ -56,7 +75,7 @@ namespace ImageResizer
             FileStream fileStream;
             FileInfo fileInfo;
 
-            int[] height = new int[3] { 200, 500, 800 }; 
+            int[] height = new int[4] { 200, 500, 800, ChosenHeight }; 
 
             while(true)
             {
@@ -65,7 +84,10 @@ namespace ImageResizer
 
                 foreach(var file in inputFiles)
                 {
-                    for (int i = 0; i < 3; i++)
+                    Msg = "Redimensionando arquivos...";
+
+                    Thread.Sleep(500);
+                    for (int i = 0; i < 4; i++)
                     {
 
                         fileStream = new FileStream(file, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
@@ -79,16 +101,18 @@ namespace ImageResizer
 
                         string finishedPath = Environment.CurrentDirectory + @"\" + finishedDirectory + @"\" + fileInfo.Name;
 
-                        if (i == 2)
+                        if (i == 3)
                         {
                             fileInfo.MoveTo(finishedPath);
                         }
 
                     }
 
+                    Msg = "Arquivos redimensionados, adicione mais arquivos caso queira redimensionar mais!";
+
 
                 }
-                
+
 
                 Thread.Sleep(new TimeSpan(0, 0, 3));
             }
