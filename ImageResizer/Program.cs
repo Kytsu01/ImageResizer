@@ -44,6 +44,13 @@ namespace ImageResizer
             string resizedDirectory = "Resized_Files";
             string finishedDirectory = "Finished_Files";
 
+            var allowedExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ".jpg", ".jpeg", ".png", ".jfif"
+            };
+
+            string ext;
+
             string[] pixels = new string[4] { "200_Pixels", "500_Pixels", "800_Pixels", $"{ChosenHeight}_Pixels" };
 
             if(!Directory.Exists(inputDirectory))
@@ -84,6 +91,14 @@ namespace ImageResizer
 
                 foreach(var file in inputFiles)
                 {
+
+                    ext = Path.GetExtension(file);
+
+                    if (!allowedExtensions.Contains(ext))
+                    {
+                        throw new InvalidDataException($"Formato nao suportado: '{ext}'");
+                    }
+
                     Msg = "Redimensionando arquivos...";
 
                     Thread.Sleep(500);
@@ -110,7 +125,6 @@ namespace ImageResizer
 
                     Msg = "Arquivos redimensionados, adicione mais arquivos caso queira redimensionar mais!";
 
-
                 }
 
 
@@ -133,6 +147,8 @@ namespace ImageResizer
             }
 
             newImage.Save(path);
+
+            newImage.Dispose();
             img.Dispose();
 
         }
