@@ -2,6 +2,7 @@
 using System.Threading;
 using System.IO;
 using System.Drawing;
+using System.Globalization;
 
 namespace ImageResizer
 {
@@ -96,7 +97,9 @@ namespace ImageResizer
 
                     if (!allowedExtensions.Contains(ext))
                     {
-                        throw new InvalidDataException($"Formato nao suportado: '{ext}'");
+                        File.Delete(file);
+                        Msg = "Formato de arquivo invalido, adicione um arquvio de imagem!";
+                        break;
                     }
 
                     Msg = "Redimensionando arquivos...";

@@ -133,23 +133,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Kytsu\\.nuget\\packages\\": {},
+    "C:\\Users\\nicol\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kytsu\\Desktop\\Programation\\ImageResizer\\ImageResizer\\ImageResizer.csproj",
+      "projectUniqueName": "C:\\Users\\nicol\\Desktop\\ImageResizer\\ImageResizer\\ImageResizer.csproj",
       "projectName": "ImageResizer",
-      "projectPath": "C:\\Users\\Kytsu\\Desktop\\Programation\\ImageResizer\\ImageResizer\\ImageResizer.csproj",
-      "packagesPath": "C:\\Users\\Kytsu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kytsu\\Desktop\\Programation\\ImageResizer\\ImageResizer\\obj\\",
+      "projectPath": "C:\\Users\\nicol\\Desktop\\ImageResizer\\ImageResizer\\ImageResizer.csproj",
+      "packagesPath": "C:\\Users\\nicol\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nicol\\Desktop\\ImageResizer\\ImageResizer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Kytsu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nicol\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
