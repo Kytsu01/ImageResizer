@@ -2,7 +2,7 @@
 
 Redimensionador simples de imagens, focado em otimizar tamanho de arquivo mantendo qualidade perceptível.
 
-##IMPORTANTE
+**IMPORTANTE**
 
 Para executar esse projeto, você deve ter instalado na sua máquina o .NET 8.0 ou uma versão mais recente.
 
